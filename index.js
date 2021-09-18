@@ -20,6 +20,12 @@ bot.on("text", async (msg) => {
     const titulo =
       images[Math.floor(Math.random() * images.length)].origin.title;
     const imagesTitulo = await google.image(titulo, { safe: true });
+    let imagesTituloArray = string.split(" ");
+    imagesTituloArray = imagesTituloArray.sort(() => 0.5 - Math.random());
+    imagesTituloArray = shuffled.slice(
+      0,
+      Math.floor(Math.random() * images.length)
+    );
     const resultado =
       imagesTitulo[Math.floor(Math.random() * imagesTitulo.length)];
 
