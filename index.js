@@ -30,7 +30,7 @@ bot.on("text", async (msg) => {
           0,
           Math.floor(Math.random() * images.length)
         );
-        await sleep(1000);
+        await sleep(30000);
         const imagesTitulo = await google.image(imagesTituloArray.join(" "), {
           safe: true,
         });
@@ -41,7 +41,7 @@ bot.on("text", async (msg) => {
         return msg.reply.photo(resultado.url, { asReply: true });
       } catch (err) {
         console.log(err);
-        await sleep(1000);
+        await sleep(30000);
         continue;
       }
     }
