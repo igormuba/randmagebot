@@ -24,18 +24,22 @@ bot.on("text", async (msg) => {
         const images = await google.image(text, { safe: true });
         const titulo =
           images[Math.floor(Math.random() * images.length)].origin.title;
-        const imagesTitulo = await google.image(titulo, { safe: true });
-        let imagesTituloArray = string.split(" ");
+        let imagesTituloArray = titulo.split(" ");
         imagesTituloArray = imagesTituloArray.sort(() => 0.5 - Math.random());
         imagesTituloArray = shuffled.slice(
           0,
           Math.floor(Math.random() * images.length)
         );
+
+        const imagesTitulo = await google.image(imagesTituloArray.join(" "), {
+          safe: true,
+        });
+
         const resultado =
           imagesTitulo[Math.floor(Math.random() * imagesTitulo.length)];
 
         return msg.reply.photo(
-          images[Math.floor(Math.random() * images.length)].url,
+          resultado[Math.floor(Math.random() * resultado.length)].url,
           { asReply: true }
         );
       } catch (err) {
