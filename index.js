@@ -29,7 +29,7 @@ bot.on("text", async (msg) => {
 
         let imagesTituloArray = titulo.split(" ");
         imagesTituloArray = imagesTituloArray.sort(() => 0.5 - Math.random());
-        imagesTituloArray = shuffled.slice(
+        imagesTituloArray = imagesTituloArray.slice(
           0,
           Math.floor(Math.random() * images.length)
         );
