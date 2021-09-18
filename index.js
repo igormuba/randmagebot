@@ -24,7 +24,8 @@ bot.on("text", async (msg) => {
       imagesTitulo[Math.floor(Math.random() * imagesTitulo.length)];
 
     return msg.reply.photo(
-      images[Math.floor(Math.random() * images.length)].url
+      images[Math.floor(Math.random() * images.length)].url,
+      { asReply: true }
     );
   }
 });
