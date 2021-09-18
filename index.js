@@ -17,43 +17,34 @@ function sleep(ms) {
 }
 bot.on("text", async (msg) => {
   if (msg.text.startsWith("@randomagebot ")) {
-    do {
+    for (let tries = 0; tries < 5; tries++) {
       try {
         let text = msg.text.startsWith("@randomagebot ");
         text = remove_first_occurrence(msg.text, "@randomagebot ");
         const images = await google.image(text, { safe: true });
         const titulo =
           images[Math.floor(Math.random() * images.length)].origin.title;
-        console.log("titulo");
-        console.log(titulo);
-
         let imagesTituloArray = titulo.split(" ");
         imagesTituloArray = imagesTituloArray.sort(() => 0.5 - Math.random());
         imagesTituloArray = imagesTituloArray.slice(
           0,
           Math.floor(Math.random() * images.length)
         );
-        console.log("imagesTituloArray.join(' ')");
-        console.log(imagesTituloArray.join(" "));
-
+        await sleep(1000);
         const imagesTitulo = await google.image(imagesTituloArray.join(" "), {
           safe: true,
         });
-
+        let random = Math.floor(Math.random() * imagesTitulo.length);
         const resultado =
           imagesTitulo[Math.floor(Math.random() * imagesTitulo.length)];
-
-        return msg.reply.photo(
-          resultado[Math.floor(Math.random() * resultado.length)].url,
-          { asReply: true }
-        );
+        tries = 5;
+        return msg.reply.photo(resultado.url, { asReply: true });
       } catch (err) {
         console.log(err);
         await sleep(1000);
         continue;
       }
-      break;
-    } while (true);
+    }
   }
 });
 
